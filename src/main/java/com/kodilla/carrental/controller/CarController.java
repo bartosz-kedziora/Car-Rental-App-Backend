@@ -6,7 +6,6 @@ import com.kodilla.carrental.mapper.CarMapper;
 import com.kodilla.carrental.service.CarService;
 import com.kodilla.carrental.exception.CarNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -28,7 +27,7 @@ public class CarController {
     }
 
     @GetMapping("getAllCars")
-    public List<CarDto> getAllCars() throws CarNotFoundException{
+    public List<CarDto> getAllCars(){
             List<Car> cars = carService.getAllCars();
             return carMapper.mapToCarDtoList(cars);
     }
@@ -46,6 +45,11 @@ public class CarController {
     @GetMapping("/by_year/{year}")
     public List<CarDto> getCarsByProductionYear(@PathVariable int year) {
         return carMapper.mapToCarDtoList(carService.getCarsByProductionYear(year));
+    }
+
+    @GetMapping("/by_bodyStyle/{bodyStyle}")
+    public List<CarDto> getCarsByBodyType(@PathVariable String bodyStyle) {
+        return carMapper.mapToCarDtoList(carService.getCarsByBodyType(bodyStyle));
     }
 
     @GetMapping("/by_fuel/{fuelType}")

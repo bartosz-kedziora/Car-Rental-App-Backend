@@ -19,26 +19,16 @@ public class CarService {
         return carRepository.findAll();
     }
 
+    public Car getCarById(final Long id) throws CarNotFoundException {
+        return carRepository.findById(id).orElseThrow(CarNotFoundException::new);
+    }
 
     public List<Car> getCarsByBrand(final String brand) {
         return carRepository.findAllByBrand(brand);
     }
 
-
     public List<Car> getCarsByProductionYear(final int year) {
         return carRepository.findAllByProductionYear(year);
-    }
-
-    public Car getCarById(final Long id) throws CarNotFoundException {
-        return carRepository.findById(id).orElseThrow(CarNotFoundException::new);
-    }
-
-    public void deleteCar(final Long id) {
-        carRepository.deleteById(id);
-    }
-
-    public Car saveCar(final Car car) {
-        return carRepository.save(car);
     }
 
     public List<Car> getCarsByBodyType(final String bodyType) {
@@ -60,4 +50,13 @@ public class CarService {
     public Car getCarByVin(final String vin) throws CarNotFoundException {
         return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
     }
+
+    public Car saveCar(final Car car) {
+        return carRepository.save(car);
+    }
+
+    public void deleteCar(final Long id) {
+        carRepository.deleteById(id);
+    }
+
 }
