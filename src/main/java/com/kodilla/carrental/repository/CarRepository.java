@@ -31,11 +31,4 @@ public interface CarRepository extends CrudRepository<Car, Long> {
 
     List<Car> findAllByCostPerDay(BigDecimal cost);
 
-
-//    List<Car> findAllByMileageLessThan(int maxDistance);
-
-//    List<Car> findAllByCostPerDayLessThan(BigDecimal maxCost);
-
-//    long countAllByStatus(Status status);
-
 }

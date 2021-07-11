@@ -13,8 +13,8 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-//@Table(name = "CARS")
-@Entity(name = "cars")
+@Entity
+@Table(name = "CARS")
 public class Car {
 
     @Id
@@ -62,26 +62,4 @@ public class Car {
     @Column(name = "STATUS")
     private Status status;
 
-//    @OneToMany(targetEntity = Rental.class,
-//            cascade = CascadeType.ALL,
-//            fetch = FetchType.EAGER,
-//            mappedBy = "car")
-//    private List<Rental> rentals = new ArrayList<>();
-
-
-//    public Car(Long id, @NotNull String vin, @NotNull String brand, @NotNull String model, @NotNull int productionYear,
-//               @NotNull String fuelType, @NotNull double engineCapacity, @NotNull String bodyStyle,
-//               @NotNull int mileage, @NotNull BigDecimal costPerDay, Status status) {
-//        this.id = id;
-//        this.vin = vin;
-//        this.brand = brand;
-//        this.model = model;
-//        this.productionYear = productionYear;
-//        this.fuelType = fuelType;
-//        this.engineCapacity = engineCapacity;
-//        this.bodyStyle = bodyStyle;
-//        this.mileage = mileage;
-//        this.costPerDay = costPerDay;
-//        this.status = Status.AVAILABLE;
-//    }
 }

@@ -9,8 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/cars")
@@ -19,16 +21,16 @@ public class CarController {
     private final CarMapper carMapper;
     private final CarService carService;
 
+    @GetMapping("by_id/{carId}")
+    public CarDto getCar(@PathVariable Long carId) throws CarNotFoundException{
+        return carMapper.mapToCarDto(
+                carService.getCarById(carId));
+    }
+
     @GetMapping("getAllCars")
     public List<CarDto> getAllCars() throws CarNotFoundException{
             List<Car> cars = carService.getAllCars();
             return carMapper.mapToCarDtoList(cars);
-    }//Todo
-
-    @GetMapping("/{carId}")
-    public CarDto getCar(@PathVariable Long carId) throws CarNotFoundException{
-        return carMapper.mapToCarDto(
-                    carService.getCarById(carId));
     }
 
     @GetMapping("by_vin/{vin}")
@@ -41,32 +43,42 @@ public class CarController {
         return carMapper.mapToCarDtoList(carService.getCarsByBrand(brand));
     }
 
-//    @GetMapping("/by_year/{year}")
-//    public List<CarDto> getCarsByProductionYear(@PathVariable int year) {
-//        return carFacade.getCarsByProductionYear(year);
-//    }
-
-
-
-
-    @DeleteMapping(value = "/{id}")
-    public void deleteCar(@RequestParam Long carId) {
-        carService.deleteCar(carId);
+    @GetMapping("/by_year/{year}")
+    public List<CarDto> getCarsByProductionYear(@PathVariable int year) {
+        return carMapper.mapToCarDtoList(carService.getCarsByProductionYear(year));
     }
-    //tu poprawić i posprawdzać
 
+    @GetMapping("/by_fuel/{fuelType}")
+    public List<CarDto> getCarsByFuelType(@PathVariable String fuelType) {
+        return carMapper.mapToCarDtoList(carService.getCarsByFuelType(fuelType));
+    }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createCar", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/by_mileage/{mileage}")
+    public List<CarDto> getCarsByMileage(@PathVariable int mileage) {
+        return carMapper.mapToCarDtoList(carService.getCarsByMileage(mileage));
+    }
+
+    @GetMapping("/by_cost/{cost}")
+    public List<CarDto> getCarsByCostPerDay(@PathVariable BigDecimal cost) {
+        return carMapper.mapToCarDtoList(carService.getCarsByCostPerDay(cost));
+    }
+
+    @PostMapping
     public void createCar(@RequestBody CarDto carDto) {
-            Car car = carMapper.mapToCar(carDto);
-            carService.saveCar(car);
+        Car car = carMapper.mapToCar(carDto);
+        carService.saveCar(car);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "updateCar")
+    @PutMapping
     public CarDto updateTask(@RequestBody CarDto carDto) {
         Car car = carMapper.mapToCar(carDto);
         Car savedCar = carService.saveCar(car);
         return carMapper.mapToCarDto(savedCar);
+    }
+
+    @DeleteMapping(value = "/{carId}")
+    public void deleteCar(@PathVariable Long carId) {
+        carService.deleteCar(carId);
     }
 
 }

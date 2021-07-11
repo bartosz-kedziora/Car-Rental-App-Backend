@@ -41,11 +41,6 @@ public class CarService {
         return carRepository.save(car);
     }
 
-//    public Car saveCar(final CarDto carDto) {
-//        return carRepository.save(carMapper.mapToCar(carDto));
-//    }
-
-
     public List<Car> getCarsByBodyType(final String bodyType) {
         return carRepository.findAllByBodyStyle(bodyType);
     }
@@ -65,14 +60,4 @@ public class CarService {
     public Car getCarByVin(final String vin) throws CarNotFoundException {
         return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
     }
-
-//    public List<Car> getCarsByCostPerDayLessThan(BigDecimal cost) {
-//        return carRepository.findAllByCostPerDayLessThan(cost);
-//    }
-
-
-//    public List<Car> getCarsByMileageLessThen(int distance) {
-//        return carRepository.findAllByMileageLessThan(distance);
-//    }
-
 }
