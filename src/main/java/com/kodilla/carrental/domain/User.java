@@ -7,7 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,9 +47,16 @@ public class User {
     private int phoneNumber;
 
     @Column(name = "ACCOUNT_CREATED")
-    private Date accountCreated;
+    private LocalDate creationDate;
 
-    public User(String name, String lastName, String email, String password, int phoneNumber) {
+    @OneToMany(targetEntity = Rental.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "user")
+    private List<Rental> rentals = new ArrayList<>();
+
+    public User(Long id, String name, String lastName, String email, String password, int phoneNumber) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;

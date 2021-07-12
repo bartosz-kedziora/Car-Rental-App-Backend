@@ -8,6 +8,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -61,5 +63,25 @@ public class Car {
     @Enumerated
     @Column(name = "STATUS")
     private Status status;
+
+    @OneToMany(targetEntity = Rental.class,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER,
+            mappedBy = "car")
+    private List<Rental> rentals = new ArrayList<>();
+
+    public Car(Long id, String vin, int productionYear, String brand, String model, int mileage, String bodyStyle, String fuelType, double engineCapacity, BigDecimal costPerDay) {
+        this.id = id;
+        this.vin = vin;
+        this.productionYear = productionYear;
+        this.brand = brand;
+        this.model = model;
+        this.mileage = mileage;
+        this.bodyStyle = bodyStyle;
+        this.fuelType = fuelType;
+        this.engineCapacity = engineCapacity;
+        this.costPerDay = costPerDay;
+        this.status = Status.AVAILABLE;
+    }
 
 }
