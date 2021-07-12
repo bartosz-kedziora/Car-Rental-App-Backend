@@ -53,11 +53,11 @@ public class Rental {
     private Car car;
 
     public Rental(LocalDate rentedFrom, LocalDate rentedTo, User user, Car car) {
-        this.duration = DAYS.between(rentedFrom, rentedTo);
-        this.cost = car.getCostPerDay().multiply(new BigDecimal(duration));
         this.rentedFrom = rentedFrom;
         this.rentedTo = rentedTo;
         this.user = user;
         this.car = car;
+        this.duration = DAYS.between(rentedFrom, rentedTo);
+        this.cost = car.getCostPerDay().multiply(new BigDecimal(duration));
     }
 }
