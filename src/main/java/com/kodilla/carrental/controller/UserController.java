@@ -47,16 +47,13 @@ public class UserController {
     }
 
     @PostMapping
-    public void createUser(@RequestBody UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
-        userService.saveUser(user);
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        return userService.saveUser(userDto);
     }
 
     @PutMapping
     public UserDto updateUser(@RequestBody UserDto userDto) {
-        User user = userMapper.mapToUser(userDto);
-        User savedUser = userService.saveUser(user);
-        return userMapper.mapToUserDto(savedUser);
+        return userService.saveUser(userDto);
     }
 
     @DeleteMapping(value = "/{userId}")

@@ -68,16 +68,13 @@ public class CarController {
     }
 
     @PostMapping
-    public void createCar(@RequestBody CarDto carDto) {
-        Car car = carMapper.mapToCar(carDto);
-        carService.saveCar(car);
+    public CarDto createCar(@RequestBody CarDto carDto) {
+        return carService.saveCar(carDto);
     }
 
     @PutMapping
     public CarDto updateTask(@RequestBody CarDto carDto) {
-        Car car = carMapper.mapToCar(carDto);
-        Car savedCar = carService.saveCar(car);
-        return carMapper.mapToCarDto(savedCar);
+        return carService.saveCar(carDto);
     }
 
     @DeleteMapping(value = "/{carId}")

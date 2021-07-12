@@ -1,7 +1,9 @@
 package com.kodilla.carrental.service;
 
 import com.kodilla.carrental.domain.User;
+import com.kodilla.carrental.dto.UserDto;
 import com.kodilla.carrental.exception.UserNotFoundException;
+import com.kodilla.carrental.mapper.UserMapper;
 import com.kodilla.carrental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -30,8 +33,8 @@ public class UserService {
         return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(UserNotFoundException::new);
     }
 
-    public User saveUser(final User user) {
-        return userRepository.save(user);
+    public UserDto saveUser(final UserDto userDto) {
+        return userMapper.mapToUserDto(userRepository.save(userMapper.mapToUser(userDto)));
     }
 
     public void deleteUser(Long id) {

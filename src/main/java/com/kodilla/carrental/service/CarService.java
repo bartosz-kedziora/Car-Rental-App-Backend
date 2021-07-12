@@ -1,7 +1,9 @@
 package com.kodilla.carrental.service;
 
 import com.kodilla.carrental.domain.Car;
+import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.exception.CarNotFoundException;
+import com.kodilla.carrental.mapper.CarMapper;
 import com.kodilla.carrental.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final CarMapper carMapper;
 
     public List<Car> getAllCars() {
         return carRepository.findAll();
@@ -51,8 +54,8 @@ public class CarService {
         return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
     }
 
-    public Car saveCar(final Car car) {
-        return carRepository.save(car);
+    public CarDto saveCar(final CarDto carDto) {
+        return carMapper.mapToCarDto(carRepository.save(carMapper.mapToCar(carDto)));
     }
 
     public void deleteCar(final Long id) {
