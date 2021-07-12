@@ -2,6 +2,7 @@ package com.kodilla.carrental.mapper;
 
 import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.dto.CarDto;
+import com.kodilla.carrental.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,12 +19,11 @@ public class CarMapper {
                 carDto.getBrand(),
                 carDto.getModel(),
                 carDto.getProductionYear(),
-                carDto.getFuelType(),
-                carDto.getEngineCapacity(),
-                carDto.getBodyClass(),
                 carDto.getMileage(),
-                carDto.getCostPerDay(),
-                carDto.getStatus());
+                carDto.getFuelType(),
+                carDto.getBodyStyle(),
+                carDto.getEngineCapacity(),
+                carDto.getCostPerDay());
     }
 
     public CarDto mapToCarDto(final Car car)
@@ -45,22 +45,18 @@ public class CarMapper {
     public List<CarDto> mapToCarDtoList(final List<Car> carList)
     {
         return carList.stream()
-                .map(this::mapToCarDto)
+                .map(car -> new CarDto(
+                        car.getId(),
+                        car.getVin(),
+                        car.getBrand(),
+                        car.getModel(),
+                        car.getProductionYear(),
+                        car.getFuelType(),
+                        car.getEngineCapacity(),
+                        car.getBodyStyle(),
+                        car.getMileage(),
+                        car.getCostPerDay(),
+                        car.getStatus()))
                 .collect(Collectors.toList());
-
-//        return carList.stream()
-//                .map(car -> new CarDto(
-//                        car.getId(),
-//                        car.getVin(),
-//                        car.getBrand(),
-//                        car.getModel(),
-//                        car.getProductionYear(),
-//                        car.getFuelType(),
-//                        car.getEngineCapacity(),
-//                        car.getBodyStyle(),
-//                        car.getMileage(),
-//                        car.getCostPerDay(),
-//                        car.getStatus()))
-//                .collect(Collectors.toList());
     }
 }
