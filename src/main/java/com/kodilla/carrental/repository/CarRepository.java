@@ -31,4 +31,8 @@ public interface CarRepository extends CrudRepository<Car, Long> {
 
     List<Car> findAllByCostPerDay(BigDecimal cost);
 
+    Car save(Car car);
+
+    void deleteById(Long id);
+
 }

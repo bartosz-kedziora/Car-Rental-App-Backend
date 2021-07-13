@@ -1,12 +1,8 @@
 package com.kodilla.carrental.controller;
 
-import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.domain.User;
-import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.dto.UserDto;
-import com.kodilla.carrental.exception.CarNotFoundException;
 import com.kodilla.carrental.exception.UserNotFoundException;
-import com.kodilla.carrental.mapper.CarMapper;
 import com.kodilla.carrental.mapper.UserMapper;
 import com.kodilla.carrental.service.UserService;
 import lombok.RequiredArgsConstructor;

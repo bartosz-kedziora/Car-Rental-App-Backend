@@ -1,17 +1,12 @@
 package com.kodilla.carrental.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-@Getter
-@Setter
+@Data
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class UserDto {
     private Long id;
     private String name;

@@ -1,5 +1,6 @@
 package com.kodilla.carrental.repository;
 
+import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.domain.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     Optional<User> findByPhoneNumber(int phoneNumber);
+
+    User save(User user);
+
+    void deleteById(Long id);
+
+    long count();
 }
 
