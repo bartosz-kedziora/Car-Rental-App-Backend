@@ -14,7 +14,9 @@ public class RentalMapper {
                 rental.getId(),
                 rental.getRentedFrom(),
                 rental.getRentedTo(),
-                rental.getCar().getId(),
+                rental.getDuration(),
+                rental.getCost(),
+                rental.getCar().getModel(),
                 rental.getUser().getId());
     }
 
@@ -24,9 +26,10 @@ public class RentalMapper {
                         rental.getId(),
                         rental.getRentedFrom(),
                         rental.getRentedTo(),
-                        rental.getCar().getId(),
+                        rental.getDuration(),
+                        rental.getCost(),
+                        rental.getCar().getModel(),
                         rental.getUser().getId()))
                 .collect(Collectors.toList());
     }
-
 }
