@@ -37,8 +37,8 @@ public class RentalController {
     }
 
     @PostMapping
-    public void createRental(@RequestParam LocalDate rentedFrom, @RequestParam LocalDate rentedTo,
-                                  @RequestParam Long userId, @RequestParam Long carId)
+    public void createRental(@PathVariable LocalDate rentedFrom, @PathVariable LocalDate rentedTo,
+                             @PathVariable Long userId, @PathVariable Long carId)
             throws CarNotFoundException, UserNotFoundException {
         rentalService.createRental(rentedFrom, rentedTo, userId, carId);
     }
