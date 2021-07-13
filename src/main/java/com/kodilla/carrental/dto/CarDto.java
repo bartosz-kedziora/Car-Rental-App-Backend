@@ -1,10 +1,7 @@
 package com.kodilla.carrental.dto;
 
 import com.kodilla.carrental.domain.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
+import lombok.*;
 import java.math.BigDecimal;
 
 @Data

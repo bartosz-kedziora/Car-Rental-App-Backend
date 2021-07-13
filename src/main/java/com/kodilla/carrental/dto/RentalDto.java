@@ -1,9 +1,6 @@
 package com.kodilla.carrental.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
+import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

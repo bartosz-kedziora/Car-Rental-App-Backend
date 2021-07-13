@@ -1,7 +1,6 @@
 package com.kodilla.carrental.dto;
 
 import lombok.*;
-
 import java.time.LocalDate;
 
 @Data
