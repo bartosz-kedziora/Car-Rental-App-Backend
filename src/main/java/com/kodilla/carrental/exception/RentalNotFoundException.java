@@ -2,6 +2,6 @@ package com.kodilla.carrental.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class RentalNotFoundException extends Exception{
+@ResponseStatus(code = HttpStatus.NOT_FOUND, reason = "Rental Not Found")
+public class RentalNotFoundException extends Exception {
 }

@@ -43,7 +43,7 @@ public class RentalController {
         rentalService.createRental(rentedFrom, rentedTo, userId, carId);
     }
 
-    @DeleteMapping(value = "/{rentalId}")
+    @DeleteMapping("/{rentalId}")
     public void closeRental(@PathVariable Long rentalId) throws RentalNotFoundException {
         rentalService.closeRental(rentalId);
 

@@ -77,7 +77,7 @@ public class CarController {
         return carService.saveCar(carDto);
     }
 
-    @DeleteMapping(value = "/{carId}")
+    @DeleteMapping("/{carId}")
     public void deleteCar(@PathVariable Long carId) {
         carService.deleteCar(carId);
     }

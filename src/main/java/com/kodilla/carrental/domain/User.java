@@ -45,6 +45,7 @@ public class User {
     @Column(name = "PHONE_NUMBER")
     private int phoneNumber;
 
+    @NotNull
     @Column(name = "ACCOUNT_CREATED")
     private LocalDate creationDate;
 
