@@ -21,15 +21,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(Long id) throws UserNotFoundException {
+    public User getUserById(final Long id) throws UserNotFoundException {
         return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
-    public User getUserByEmail(String email) throws UserNotFoundException {
+    public User getUserByEmail(final String email) throws UserNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(UserNotFoundException::new);
     }
 
-    public User getUserByPhoneNumber(int phoneNumber) throws UserNotFoundException {
+    public User getUserByPhoneNumber(final int phoneNumber) throws UserNotFoundException {
         return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(UserNotFoundException::new);
     }
 
@@ -37,7 +37,7 @@ public class UserService {
         return userMapper.mapToUserDto(userRepository.save(userMapper.mapToUser(userDto)));
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(final Long id) {
         userRepository.deleteById(id);
     }
 }
