@@ -1,10 +1,6 @@
 package com.kodilla.carrental.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -24,7 +20,6 @@ public class Rental {
     @GeneratedValue
     @Column(name = "ID", unique = true)
     private Long id;
-
 
     @NotNull
     @Column(name = "DURATION")

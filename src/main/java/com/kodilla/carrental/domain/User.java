@@ -1,15 +1,10 @@
 package com.kodilla.carrental.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -42,7 +37,7 @@ public class User {
     private String password;
 
     @NotNull
-    @Column(name = "PHONE_NUMBER")
+    @Column(name = "PHONE_NUMBER", unique = true)
     private int phoneNumber;
 
     @NotNull

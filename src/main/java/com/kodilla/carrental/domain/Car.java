@@ -1,15 +1,10 @@
 package com.kodilla.carrental.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
+import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -70,7 +65,8 @@ public class Car {
             mappedBy = "car")
     private List<Rental> rentals = new ArrayList<>();
 
-    public Car(Long id, String vin, String brand, String model, int productionYear, int mileage, String bodyStyle, String fuelType, double engineCapacity, BigDecimal costPerDay) {
+    public Car(Long id, String vin, String brand, String model, int productionYear, int mileage,
+               String bodyStyle, String fuelType, double engineCapacity, BigDecimal costPerDay) {
         this.id = id;
         this.vin = vin;
         this.brand = brand;
@@ -83,5 +79,4 @@ public class Car {
         this.costPerDay = costPerDay;
         this.status = Status.AVAILABLE;
     }
-
 }
