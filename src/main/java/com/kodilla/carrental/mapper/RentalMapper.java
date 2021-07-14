@@ -14,10 +14,15 @@ public class RentalMapper {
                 rental.getId(),
                 rental.getRentedFrom(),
                 rental.getRentedTo(),
-                rental.getDuration(),
                 rental.getCost(),
+                rental.getCar().getId(),
+                rental.getCar().getBrand(),
                 rental.getCar().getModel(),
-                rental.getUser().getId());
+                rental.getUser().getId(),
+                rental.getUser().getName(),
+                rental.getUser().getLastName(),
+                rental.getUser().getEmail(),
+                rental.getUser().getPhoneNumber());
     }
 
     public List<RentalDto> mapToRentalDtoList(final List<Rental> rentalList) {
@@ -26,10 +31,15 @@ public class RentalMapper {
                         rental.getId(),
                         rental.getRentedFrom(),
                         rental.getRentedTo(),
-                        rental.getDuration(),
                         rental.getCost(),
+                        rental.getCar().getId(),
+                        rental.getCar().getBrand(),
                         rental.getCar().getModel(),
-                        rental.getUser().getId()))
+                        rental.getUser().getId(),
+                        rental.getUser().getName(),
+                        rental.getUser().getLastName(),
+                        rental.getUser().getEmail(),
+                        rental.getUser().getPhoneNumber()))
                 .collect(Collectors.toList());
     }
 }
