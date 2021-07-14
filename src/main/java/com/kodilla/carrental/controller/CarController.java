@@ -1,13 +1,10 @@
 package com.kodilla.carrental.controller;
 
-import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.dto.CarDto;
-import com.kodilla.carrental.mapper.CarMapper;
-import com.kodilla.carrental.service.CarService;
+import com.kodilla.carrental.facade.CarFacade;
 import com.kodilla.carrental.exception.CarNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,69 +14,66 @@ import java.util.List;
 @RequestMapping("/v1/cars")
 public class CarController {
 
-    private final CarMapper carMapper;
-    private final CarService carService;
+    private final CarFacade carFacade;
 
     @GetMapping("by_id/{carId}")
-    public CarDto getCar(@PathVariable Long carId) throws CarNotFoundException{
-        return carMapper.mapToCarDto(
-                carService.getCarById(carId));
+    public CarDto getCarById(@PathVariable Long carId) throws CarNotFoundException {
+        return carFacade.getCarById(carId);
     }
 
     @GetMapping("getAllCars")
     public List<CarDto> getAllCars(){
-            List<Car> cars = carService.getAllCars();
-            return carMapper.mapToCarDtoList(cars);
+        return carFacade.getAllCars();
     }
 
     @GetMapping("by_vin/{vin}")
     public CarDto getCarByVin(@PathVariable String vin) throws CarNotFoundException {
-        return carMapper.mapToCarDto(carService.getCarByVin(vin));
+        return carFacade.getCarByVin(vin);
     }
+
 
     @GetMapping("/by_brand/{brand}")
     public List<CarDto> getCarByBrand(@PathVariable String brand) {
-        return carMapper.mapToCarDtoList(carService.getCarsByBrand(brand));
+        return carFacade.getCarsByBrand(brand);
     }
 
     @GetMapping("/by_year/{year}")
     public List<CarDto> getCarsByProductionYear(@PathVariable int year) {
-        return carMapper.mapToCarDtoList(carService.getCarsByProductionYear(year));
+        return carFacade.getCarsByProductionYear(year);
     }
 
     @GetMapping("/by_bodyStyle/{bodyStyle}")
     public List<CarDto> getCarsByBodyType(@PathVariable String bodyStyle) {
-        return carMapper.mapToCarDtoList(carService.getCarsByBodyType(bodyStyle));
+        return carFacade.getCarsByBodyType(bodyStyle);
     }
 
     @GetMapping("/by_fuel/{fuelType}")
     public List<CarDto> getCarsByFuelType(@PathVariable String fuelType) {
-        return carMapper.mapToCarDtoList(carService.getCarsByFuelType(fuelType));
+        return carFacade.getCarsByFuelType(fuelType);
     }
 
     @GetMapping("/by_mileage/{mileage}")
     public List<CarDto> getCarsByMileage(@PathVariable int mileage) {
-        return carMapper.mapToCarDtoList(carService.getCarsByMileage(mileage));
+        return carFacade.getCarsByMileage(mileage);
     }
 
     @GetMapping("/by_cost/{cost}")
     public List<CarDto> getCarsByCostPerDay(@PathVariable BigDecimal cost) {
-        return carMapper.mapToCarDtoList(carService.getCarsByCostPerDay(cost));
+        return carFacade.getCarsByCostPerDay(cost);
     }
 
     @PostMapping
     public CarDto createCar(@RequestBody CarDto carDto) {
-        return carService.saveCar(carDto);
+        return carFacade.saveCar(carDto);
     }
 
     @PutMapping
     public CarDto updateTask(@RequestBody CarDto carDto) {
-        return carService.saveCar(carDto);
+        return carFacade.saveCar(carDto);
     }
 
     @DeleteMapping("/{carId}")
     public void deleteCar(@PathVariable Long carId) {
-        carService.deleteCar(carId);
+        carFacade.deleteCar(carId);
     }
-
 }

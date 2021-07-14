@@ -1,10 +1,8 @@
 package com.kodilla.carrental.controller;
 
-import com.kodilla.carrental.domain.User;
 import com.kodilla.carrental.dto.UserDto;
 import com.kodilla.carrental.exception.UserNotFoundException;
-import com.kodilla.carrental.mapper.UserMapper;
-import com.kodilla.carrental.service.UserService;
+import com.kodilla.carrental.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,45 +14,46 @@ import java.util.List;
 @RequestMapping("/v1/users")
 public class UserController {
 
-    private final UserService userService;
-    private final UserMapper userMapper;
+    private final UserFacade userFacade;
 
     @GetMapping("by_id/{userId}")
     public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
-        return userMapper.mapToUserDto(userService.getUserById(userId));
+        return userFacade.getUserById(userId);
     }
 
     @GetMapping("getAllUsers")
     public List<UserDto> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return userMapper.mapToUserDtoList(users);
+        return userFacade.getAllUsers();
     }
-
 
     @GetMapping("/by_email/{email}")
     public UserDto getUserByEmail(@PathVariable String email) throws UserNotFoundException {
-        return userMapper.mapToUserDto(userService.getUserByEmail(email));
-
+        return userFacade.getUserByEmail(email);
     }
 
     @GetMapping("/by_phone/{number}")
     public UserDto getUserByPhone(@PathVariable int number) throws UserNotFoundException {
-        return userMapper.mapToUserDto(userService.getUserByPhoneNumber(number));
+        return userFacade.getUserByPhoneNumber(number);
     }
 
     @PostMapping
     public UserDto createUser(@RequestBody UserDto userDto) {
-        return userService.saveUser(userDto);
+        return userFacade.saveUser(userDto);
     }
 
     @PutMapping
-    public UserDto updateUser(@RequestBody UserDto userDto) {
-        return userService.saveUser(userDto);
+    public UserDto updateUser(@RequestBody UserDto userDto) throws UserNotFoundException{
+        return userFacade.updateUser(userDto);
     }
 
     @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
-        userService.deleteUser(userId);
+    public void deleteUser(@PathVariable Long userId) throws UserNotFoundException{
+        userFacade.deleteUser(userId);
+    }
+
+    @GetMapping("/hasNoRents/{userId}")
+    public Boolean doesUserHaveNoRents(@PathVariable Long userId) throws UserNotFoundException {
+        return userFacade.doesUserHaveNoRents(userId);
     }
 }
 

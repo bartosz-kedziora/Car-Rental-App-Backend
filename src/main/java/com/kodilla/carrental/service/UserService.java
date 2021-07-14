@@ -1,9 +1,7 @@
 package com.kodilla.carrental.service;
 
 import com.kodilla.carrental.domain.User;
-import com.kodilla.carrental.dto.UserDto;
 import com.kodilla.carrental.exception.UserNotFoundException;
-import com.kodilla.carrental.mapper.UserMapper;
 import com.kodilla.carrental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
