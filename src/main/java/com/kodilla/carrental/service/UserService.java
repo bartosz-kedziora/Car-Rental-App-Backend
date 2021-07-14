@@ -15,7 +15,6 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -33,11 +32,21 @@ public class UserService {
         return userRepository.findByPhoneNumber(phoneNumber).orElseThrow(UserNotFoundException::new);
     }
 
-    public UserDto saveUser(final UserDto userDto) {
-        return userMapper.mapToUserDto(userRepository.save(userMapper.mapToUser(userDto)));
+    public Boolean isUserAlreadyRegistered(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    public Boolean doesUserHaveNoRents(Long id) throws UserNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(UserNotFoundException::new);
+        return user.getRentals().isEmpty();
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     public void deleteUser(final Long id) {
         userRepository.deleteById(id);
     }
+
 }

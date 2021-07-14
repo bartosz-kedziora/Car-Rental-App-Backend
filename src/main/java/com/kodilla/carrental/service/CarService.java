@@ -1,9 +1,7 @@
 package com.kodilla.carrental.service;
 
 import com.kodilla.carrental.domain.Car;
-import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.exception.CarNotFoundException;
-import com.kodilla.carrental.mapper.CarMapper;
 import com.kodilla.carrental.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +14,6 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
-    private final CarMapper carMapper;
 
     public List<Car> getAllCars() {
         return carRepository.findAll();
@@ -24,6 +21,10 @@ public class CarService {
 
     public Car getCarById(final Long id) throws CarNotFoundException {
         return carRepository.findById(id).orElseThrow(CarNotFoundException::new);
+    }
+
+    public Car getCarByVin(final String vin) throws CarNotFoundException {
+        return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
     }
 
     public List<Car> getCarsByBrand(final String brand) {
@@ -50,16 +51,11 @@ public class CarService {
         return carRepository.findAllByCostPerDay(cost);
     }
 
-    public Car getCarByVin(final String vin) throws CarNotFoundException {
-        return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
-    }
-
-    public CarDto saveCar(final CarDto carDto) {
-        return carMapper.mapToCarDto(carRepository.save(carMapper.mapToCar(carDto)));
+    public Car saveCar(Car car) {
+        return carRepository.save(car);
     }
 
     public void deleteCar(final Long id) {
         carRepository.deleteById(id);
     }
-
 }

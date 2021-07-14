@@ -1,13 +1,12 @@
 package com.kodilla.carrental.repository;
 
-import com.kodilla.carrental.domain.Car;
+import com.kodilla.carrental.domain.*;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Transactional
 @Repository
@@ -31,8 +30,5 @@ public interface CarRepository extends CrudRepository<Car, Long> {
 
     List<Car> findAllByCostPerDay(BigDecimal cost);
 
-    Car save(Car car);
-
-    void deleteById(Long id);
-
+    long countAllByStatus(Status status);
 }

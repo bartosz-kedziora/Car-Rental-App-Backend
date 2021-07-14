@@ -1,54 +1,83 @@
 package com.kodilla.carrental.service;
 
-import com.kodilla.carrental.domain.Car;
-import com.kodilla.carrental.domain.Rental;
-import com.kodilla.carrental.domain.Status;
-import com.kodilla.carrental.domain.User;
+import com.kodilla.carrental.domain.*;
 import com.kodilla.carrental.dto.RentalDto;
-import com.kodilla.carrental.exception.CarNotFoundException;
-import com.kodilla.carrental.exception.RentalNotFoundException;
-import com.kodilla.carrental.exception.UserNotFoundException;
-import com.kodilla.carrental.mapper.RentalMapper;
-import com.kodilla.carrental.repository.CarRepository;
-import com.kodilla.carrental.repository.RentalRepository;
-import com.kodilla.carrental.repository.UserRepository;
+import com.kodilla.carrental.exception.*;
+import com.kodilla.carrental.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @RequiredArgsConstructor
 @Service
 public class RentalService {
 
-    private final RentalMapper rentalMapper;
     private final RentalRepository rentalRepository;
     private final UserRepository userRepository;
     private final CarRepository carRepository;
 
-    public Rental createRental(final LocalDate rentedFrom, final LocalDate rentedTo, final Long userId, final Long carId)
-            throws UserNotFoundException, CarNotFoundException {
-        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        Car car = carRepository.findById(carId).orElseThrow(CarNotFoundException::new);
+    public List<Rental> getAllRentals() {
+        return rentalRepository.findAll();
+    }
 
+    public Rental getRentalById(final Long id) throws RentalNotFoundException {
+        return rentalRepository.findById(id).orElseThrow(RentalNotFoundException::new);
+    }
+
+    public List<Rental> getRentalsByUserId(Long id) {
+        List<Rental> rentalList = getAllRentals();
+        return rentalList.stream()
+                .filter(r -> r.getUser().getId().equals(id))
+                .collect(Collectors.toList());
+    }
+
+    public Rental createRental(RentalDto rentalDto) throws UserNotFoundException, CarNotFoundException {
+        User user = userRepository.findById(rentalDto.getUserId()).orElseThrow(UserNotFoundException::new);
+        Car car = carRepository.findById(rentalDto.getCarId()).orElseThrow(CarNotFoundException::new);
         car.setStatus(Status.RENTED);
-        carRepository.save(car);
 
-        Rental rental = new Rental(rentedFrom, rentedTo, user, car);
+        Rental rental = new Rental(
+                rentalDto.getRentedFrom(),
+                rentalDto.getRentedTo(),
+                user,
+                car);
+
         return rentalRepository.save(rental);
     }
 
-    public RentalDto getRentalById(Long id) throws RentalNotFoundException {
-        return rentalMapper.mapToRentalDto(rentalRepository.findById(id).orElseThrow(RentalNotFoundException::new));
+    public Rental updateRental(RentalDto rentalDto) throws UserNotFoundException, CarNotFoundException, RentalNotFoundException {
+        User user = userRepository.findById(rentalDto.getUserId()).orElseThrow(UserNotFoundException::new);
+        Car car = carRepository.findById(rentalDto.getCarId()).orElseThrow(CarNotFoundException::new);
+        Rental rental = rentalRepository.findById(rentalDto.getId()).orElseThrow(RentalNotFoundException::new);
+
+        rental.setUser(user);
+        rental.setCar(car);
+        rental.setRentedFrom(rentalDto.getRentedFrom());
+        rental.setRentedTo(rentalDto.getRentedTo());
+        updateDuration(rental);
+        updateCost(rental);
+        return rental;
     }
 
-    public List<RentalDto> getAllRentals() {
-        return rentalMapper.mapToRentalDtoList(rentalRepository.findAll());
+    public void updateDuration(Rental rental) {
+        if (rental.getRentedTo().isAfter(rental.getRentedFrom())) {
+            rental.setDuration(DAYS.between(rental.getRentedFrom(), rental.getRentedTo()));
+        } else {
+            rental.setDuration(0L);
+        }
     }
 
-    public void closeRental(final Long id) throws RentalNotFoundException {
+    public void updateCost(Rental rental) {
+        BigDecimal updatedCost = rental.getCar().getCostPerDay().multiply(new BigDecimal(rental.getDuration()));
+        rental.setCost(updatedCost);
+    }
+
+    public void deleteRental(Long id) throws RentalNotFoundException {
         Rental rental = rentalRepository.findById(id).orElseThrow(RentalNotFoundException::new);
 
         rental.getUser().getRentals().remove(rental);

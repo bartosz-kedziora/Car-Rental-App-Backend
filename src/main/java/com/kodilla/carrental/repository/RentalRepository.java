@@ -5,22 +5,18 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 @Transactional
 @Repository
 public interface RentalRepository extends CrudRepository<Rental, Long> {
 
-    @Override
     List<Rental> findAll();
 
     Optional<Rental> findById(Long id);
 
-    Rental save(Rental rental);
+    List<Rental> findAllByRentedToBetween(LocalDate startDate, LocalDate endDate);
 
-    void deleteById(Long id);
-
-    @Override
-    long count();
+    List<Rental> findAllByRentedToBefore(LocalDate date);
 }
