@@ -16,7 +16,7 @@ public class CarDto
     private int productionYear;
     private String fuelType;
     private double engineCapacity;
-    private String bodyStyle;
+    private String bodyType;
     private int mileage;
     private BigDecimal costPerDay;
     private Status status;

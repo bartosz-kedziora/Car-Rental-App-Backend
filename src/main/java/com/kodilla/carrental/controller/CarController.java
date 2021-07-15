@@ -16,21 +16,20 @@ public class CarController {
 
     private final CarFacade carFacade;
 
+    @GetMapping
+    public List<CarDto> getAllCars(){
+        return carFacade.getAllCars();
+    }
+
     @GetMapping("by_id/{carId}")
     public CarDto getCarById(@PathVariable Long carId) throws CarNotFoundException {
         return carFacade.getCarById(carId);
-    }
-
-    @GetMapping("getAllCars")
-    public List<CarDto> getAllCars(){
-        return carFacade.getAllCars();
     }
 
     @GetMapping("by_vin/{vin}")
     public CarDto getCarByVin(@PathVariable String vin) throws CarNotFoundException {
         return carFacade.getCarByVin(vin);
     }
-
 
     @GetMapping("/by_brand/{brand}")
     public List<CarDto> getCarByBrand(@PathVariable String brand) {
@@ -42,9 +41,9 @@ public class CarController {
         return carFacade.getCarsByProductionYear(year);
     }
 
-    @GetMapping("/by_bodyStyle/{bodyStyle}")
-    public List<CarDto> getCarsByBodyType(@PathVariable String bodyStyle) {
-        return carFacade.getCarsByBodyType(bodyStyle);
+    @GetMapping("/by_bodyType/{bodyType}")
+    public List<CarDto> getCarsByBodyType(@PathVariable String bodyType) {
+        return carFacade.getCarsByBodyType(bodyType);
     }
 
     @GetMapping("/by_fuel/{fuelType}")
@@ -57,7 +56,7 @@ public class CarController {
         return carFacade.getCarsByMileage(mileage);
     }
 
-    @GetMapping("/by_cost/{cost}")
+    @GetMapping("/by_cost_per_day/{cost}")
     public List<CarDto> getCarsByCostPerDay(@PathVariable BigDecimal cost) {
         return carFacade.getCarsByCostPerDay(cost);
     }
@@ -68,7 +67,7 @@ public class CarController {
     }
 
     @PutMapping
-    public CarDto updateTask(@RequestBody CarDto carDto) {
+    public CarDto updateCar(@RequestBody CarDto carDto) {
         return carFacade.saveCar(carDto);
     }
 

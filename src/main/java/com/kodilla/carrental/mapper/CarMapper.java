@@ -21,7 +21,7 @@ public class CarMapper {
                 carDto.getProductionYear(),
                 carDto.getMileage(),
                 carDto.getFuelType(),
-                carDto.getBodyStyle(),
+                carDto.getBodyType(),
                 carDto.getEngineCapacity(),
                 carDto.getCostPerDay());
     }
