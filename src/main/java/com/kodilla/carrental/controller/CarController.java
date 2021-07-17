@@ -43,7 +43,7 @@ public class CarController {
 
     @GetMapping("/by_bodyType/{bodyType}")
     public List<CarDto> getCarsByBodyType(@PathVariable String bodyType) {
-        return carFacade.getCarsByBodyType(bodyType);
+        return carFacade.getCarsByBodyStyle(bodyType);
     }
 
     @GetMapping("/by_fuel/{fuelType}")

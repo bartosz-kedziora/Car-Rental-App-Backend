@@ -36,6 +36,13 @@ public class RentalService {
                 .collect(Collectors.toList());
     }
 
+    public List<Rental> getRentalsByCarId(Long id) {
+        List<Rental> rentalList = getAllRentals();
+        return rentalList.stream()
+                .filter(r -> r.getCar().getId().equals(id))
+                .collect(Collectors.toList());
+    }
+
     public Rental createRental(RentalDto rentalDto) throws UserNotFoundException, CarNotFoundException {
         User user = userRepository.findById(rentalDto.getUserId()).orElseThrow(UserNotFoundException::new);
         Car car = carRepository.findById(rentalDto.getCarId()).orElseThrow(CarNotFoundException::new);

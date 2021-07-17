@@ -42,7 +42,7 @@ public class User {
 
     @NotNull
     @Column(name = "ACCOUNT_CREATED")
-    private LocalDate creationDate;
+    private LocalDate accountCreated;
 
     @OneToMany(targetEntity = Rental.class,
             cascade = CascadeType.ALL,
@@ -58,4 +58,6 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
     }
+
+
 }

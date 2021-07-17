@@ -1,6 +1,7 @@
 package com.kodilla.carrental.facade;
 
 import com.kodilla.carrental.domain.Rental;
+import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.dto.RentalDto;
 import com.kodilla.carrental.exception.*;
 import com.kodilla.carrental.mapper.RentalMapper;
@@ -28,6 +29,10 @@ public class RentalFacade {
 
     public List<RentalDto> getRentalsByUserId(Long id) {
         return rentalMapper.mapToRentalDtoList(rentalService.getRentalsByUserId(id));
+    }
+
+    public List<RentalDto> getRentalsByCarId(Long id) {
+        return rentalMapper.mapToRentalDtoList(rentalService.getRentalsByCarId(id));
     }
 
     public RentalDto createRental(RentalDto rentalDto) throws UserNotFoundException, CarNotFoundException {

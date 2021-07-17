@@ -15,8 +15,4 @@ public interface RentalRepository extends CrudRepository<Rental, Long> {
     List<Rental> findAll();
 
     Optional<Rental> findById(Long id);
-
-    List<Rental> findAllByRentedToBetween(LocalDate startDate, LocalDate endDate);
-
-    List<Rental> findAllByRentedToBefore(LocalDate date);
 }

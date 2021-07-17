@@ -2,7 +2,6 @@ package com.kodilla.carrental.mapper;
 
 import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.dto.CarDto;
-import com.kodilla.carrental.dto.UserDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,10 +18,10 @@ public class CarMapper {
                 carDto.getBrand(),
                 carDto.getModel(),
                 carDto.getProductionYear(),
-                carDto.getMileage(),
                 carDto.getFuelType(),
-                carDto.getBodyType(),
                 carDto.getEngineCapacity(),
+                carDto.getBodyStyle(),
+                carDto.getMileage(),
                 carDto.getCostPerDay());
     }
 

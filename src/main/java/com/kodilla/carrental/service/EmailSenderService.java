@@ -28,13 +28,13 @@ public class EmailSenderService {
     }
 
     private SimpleMailMessage createMessage(final Mail mail) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(mail.getMailTo());
-        if (!StringUtils.isEmpty(mail.getToCc())) {
-            mailMessage.setCc(mail.getToCc());
-        }
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-        return mailMessage;
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//        mailMessage.setTo(mail.getMailTo());
+//        if (!StringUtils.isEmpty(mail.getToCc())) {
+//            mailMessage.setCc(mail.getToCc());
+//        }
+//        mailMessage.setSubject(mail.getSubject());
+//        mailMessage.setText(mail.getMessage());
+        return null;//mailMessage;
     }
 }

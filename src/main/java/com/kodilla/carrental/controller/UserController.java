@@ -21,7 +21,7 @@ public class UserController {
         return userFacade.getUserById(userId);
     }
 
-    @GetMapping("getAllUsers")
+    @GetMapping
     public List<UserDto> getAllUsers() {
         return userFacade.getAllUsers();
     }
@@ -49,11 +49,6 @@ public class UserController {
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Long userId) throws UserNotFoundException{
         userFacade.deleteUser(userId);
-    }
-
-    @GetMapping("/hasNoRents/{userId}")
-    public Boolean doesUserHaveNoRents(@PathVariable Long userId) throws UserNotFoundException {
-        return userFacade.doesUserHaveNoRents(userId);
     }
 }
 

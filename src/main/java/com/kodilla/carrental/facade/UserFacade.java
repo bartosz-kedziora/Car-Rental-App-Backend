@@ -19,14 +19,14 @@ public class UserFacade {
     private final UserMapper userMapper;
     public UserDto saveUser(UserDto userDto){
             User user = userMapper.mapToUser(userDto);
-            user.setCreationDate(LocalDate.now());
+            user.setAccountCreated(LocalDate.now());
             User savedUser = userService.saveUser(user);
             return userMapper.mapToUserDto(savedUser);
     }
 
-    public UserDto updateUser(UserDto userDto) throws UserNotFoundException {
+    public UserDto updateUser(UserDto userDto){
             User user = userMapper.mapToUser(userDto);
-            user.setCreationDate(LocalDate.now());
+            user.setAccountCreated(LocalDate.now());
             return userMapper.mapToUserDto(userService.saveUser(user));
     }
 
@@ -48,13 +48,5 @@ public class UserFacade {
 
     public void deleteUser(Long id) throws UserNotFoundException {
         userService.deleteUser(id);
-    }
-
-    public Boolean isUserAlreadyRegistered(String email) {
-        return userService.isUserAlreadyRegistered(email);
-    }
-
-    public Boolean doesUserHaveNoRents(Long id) throws UserNotFoundException {
-        return userService.doesUserHaveNoRents(id);
     }
 }

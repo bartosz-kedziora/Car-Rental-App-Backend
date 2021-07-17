@@ -22,7 +22,17 @@ public class RentalController {
         return rentalFacade.getRentalById(rentalId);
     }
 
-    @GetMapping(value = "getAllRentals")
+    @GetMapping("/by_user_id/{userId}")
+    public List<RentalDto> getRentalsByUserId(@PathVariable Long userId) {
+        return rentalFacade.getRentalsByUserId(userId);
+    }
+
+    @GetMapping("/by_car_id/{carId}")
+    public List<RentalDto> getRentalsByCarId(@PathVariable Long carId) {
+        return rentalFacade.getRentalsByCarId(carId);
+    }
+
+    @GetMapping
     public List<RentalDto> getAllRentals() {
         return rentalFacade.getAllRentals();
     }

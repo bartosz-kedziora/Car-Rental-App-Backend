@@ -4,12 +4,15 @@ import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.exception.CarNotFoundException;
 import com.kodilla.carrental.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CarService {
 
@@ -19,35 +22,35 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public Car getCarById(final Long id) throws CarNotFoundException {
+    public Car getCarById(Long id) throws CarNotFoundException {
         return carRepository.findById(id).orElseThrow(CarNotFoundException::new);
     }
 
-    public Car getCarByVin(final String vin) throws CarNotFoundException {
+    public Car getCarByVin(String vin) throws CarNotFoundException {
         return carRepository.findByVin(vin).orElseThrow(CarNotFoundException::new);
     }
 
-    public List<Car> getCarsByBrand(final String brand) {
+    public List<Car> getCarsByBrand(String brand) {
         return carRepository.findAllByBrand(brand);
     }
 
-    public List<Car> getCarsByProductionYear(final int year) {
+    public List<Car> getCarsByProductionYear(int year) {
         return carRepository.findAllByProductionYear(year);
     }
 
-    public List<Car> getCarsByBodyType(final String bodyType) {
-        return carRepository.findAllByBodyStyle(bodyType);
-    }
-
-    public List<Car> getCarsByFuelType(final String fuelType) {
+    public List<Car> getCarsByFuelType(String fuelType) {
         return carRepository.findAllByFuelType(fuelType);
     }
 
-    public List<Car> getCarsByMileage(final int mileage) {
+    public List<Car> getCarsByBodyStyle(String bodyStyle) {
+        return carRepository.findAllByBodyStyle(bodyStyle);
+    }
+
+    public List<Car> getCarsByMileage(int mileage) {
         return carRepository.findAllByMileage(mileage);
     }
 
-    public List<Car> getCarsByCostPerDay(final BigDecimal cost) {
+    public List<Car> getCarsByCostPerDay(BigDecimal cost) {
         return carRepository.findAllByCostPerDay(cost);
     }
 
@@ -55,7 +58,7 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public void deleteCar(final Long id) {
+    public void deleteCar(Long id) {
         carRepository.deleteById(id);
     }
 }

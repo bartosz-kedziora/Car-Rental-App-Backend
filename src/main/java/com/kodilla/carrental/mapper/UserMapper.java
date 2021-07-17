@@ -29,7 +29,7 @@ public class UserMapper {
                 user.getEmail(),
                 user.getPassword(),
                 user.getPhoneNumber(),
-                user.getCreationDate()
+                user.getAccountCreated()
         );
     }
 
@@ -42,7 +42,7 @@ public class UserMapper {
                         user.getEmail(),
                         user.getPassword(),
                         user.getPhoneNumber(),
-                        user.getCreationDate()))
+                        user.getAccountCreated()))
                 .collect(Collectors.toList());
     }
 }

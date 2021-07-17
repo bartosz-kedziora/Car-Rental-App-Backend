@@ -44,8 +44,8 @@ public class CarFacade {
         return carMapper.mapToCarDtoList(carService.getCarsByFuelType(fuelType));
     }
 
-    public List<CarDto> getCarsByBodyType(String bodyType) {
-        return carMapper.mapToCarDtoList(carService.getCarsByBodyType(bodyType));
+    public List<CarDto> getCarsByBodyStyle(String bodyType) {
+        return carMapper.mapToCarDtoList(carService.getCarsByBodyStyle(bodyType));
     }
 
     public List<CarDto> getCarsByMileage(int distance) {

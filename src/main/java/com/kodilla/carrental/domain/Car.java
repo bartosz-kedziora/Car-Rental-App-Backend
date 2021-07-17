@@ -65,17 +65,17 @@ public class Car {
             mappedBy = "car")
     private List<Rental> rentals = new ArrayList<>();
 
-    public Car(Long id, String vin, String brand, String model, int productionYear, int mileage,
-               String bodyStyle, String fuelType, double engineCapacity, BigDecimal costPerDay) {
+    public Car(Long id, String vin, String brand, String model, int productionYear, String fuelType, double engineCapacity,
+               String bodyStyle, int mileage, BigDecimal costPerDay) {
         this.id = id;
         this.vin = vin;
         this.brand = brand;
         this.model = model;
         this.productionYear = productionYear;
-        this.mileage = mileage;
-        this.bodyStyle = bodyStyle;
         this.fuelType = fuelType;
         this.engineCapacity = engineCapacity;
+        this.bodyStyle = bodyStyle;
+        this.mileage = mileage;
         this.costPerDay = costPerDay;
         this.status = Status.AVAILABLE;
     }

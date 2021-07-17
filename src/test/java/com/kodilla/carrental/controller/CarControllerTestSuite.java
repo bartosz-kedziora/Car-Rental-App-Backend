@@ -4,13 +4,13 @@ import com.google.gson.Gson;
 import com.kodilla.carrental.domain.Status;
 import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.facade.CarFacade;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(MockitoExtension.class)
 @WebMvcTest(CarController.class)
 public class CarControllerTestSuite {
 
@@ -73,7 +73,7 @@ public class CarControllerTestSuite {
                 .andExpect(jsonPath("$.productionYear", is(2020)))
                 .andExpect(jsonPath("$.fuelType", is("Diesel")))
                 .andExpect(jsonPath("$.engineCapacity", is(3.5)))
-                .andExpect(jsonPath("$.bodyType", is("Sedan")))
+                .andExpect(jsonPath("$.bodyStyle", is("Sedan")))
                 .andExpect(jsonPath("$.mileage", is(100000)))
                 .andExpect(jsonPath("$.costPerDay", is(100)))
                 .andExpect(jsonPath("$.status", is("AVAILABLE")));
@@ -141,7 +141,7 @@ public class CarControllerTestSuite {
     @Test
     public void shouldFetchCarsByBodyType() throws Exception {
         //Given
-        when(carFacade.getCarsByBodyType("Sedan")).thenReturn(testCarDtoList());
+        when(carFacade.getCarsByBodyStyle("Sedan")).thenReturn(testCarDtoList());
 
         //When & Then
         mockMvc.perform(get("/v1/cars/by_bodyType/Sedan")
@@ -149,7 +149,7 @@ public class CarControllerTestSuite {
                 .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", is(1)))
-                .andExpect(jsonPath("$[0].bodyType", is("Sedan")));
+                .andExpect(jsonPath("$[0].bodyStyle", is("Sedan")));
     }
 
     @Test
@@ -227,7 +227,7 @@ public class CarControllerTestSuite {
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
                 .andExpect(status().is(200))
-                .andExpect(jsonPath("$.bodyType", is("Sedan")))
+                .andExpect(jsonPath("$.bodyStyle", is("Sedan")))
                 .andExpect(jsonPath("$.fuelType", is("Diesel")));
     }
 

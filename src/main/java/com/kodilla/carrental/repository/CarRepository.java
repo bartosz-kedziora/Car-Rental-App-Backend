@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.*;
 
-@Transactional
 @Repository
 public interface CarRepository extends CrudRepository<Car, Long> {
 
+    @Override
     List<Car> findAll();
 
     Optional<Car> findById(Long id);
@@ -24,11 +24,9 @@ public interface CarRepository extends CrudRepository<Car, Long> {
 
     List<Car> findAllByFuelType(String fuelType);
 
-    List<Car> findAllByMileage(int mileage);
-
     List<Car> findAllByBodyStyle(String bodyStyle);
 
-    List<Car> findAllByCostPerDay(BigDecimal cost);
+    List<Car> findAllByMileage(int mileage);
 
-    long countAllByStatus(Status status);
+    List<Car> findAllByCostPerDay(BigDecimal cost);
 }
