@@ -4,7 +4,6 @@ import com.kodilla.carrental.domain.Car;
 import com.kodilla.carrental.exception.CarNotFoundException;
 import com.kodilla.carrental.repository.CarRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

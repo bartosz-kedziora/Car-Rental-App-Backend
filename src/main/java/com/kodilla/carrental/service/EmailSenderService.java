@@ -4,12 +4,12 @@ import com.kodilla.carrental.domain.Mail;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+
 @RequiredArgsConstructor
 @Service
 public class EmailSenderService {
@@ -28,13 +28,11 @@ public class EmailSenderService {
     }
 
     private SimpleMailMessage createMessage(final Mail mail) {
-//        SimpleMailMessage mailMessage = new SimpleMailMessage();
-//        mailMessage.setTo(mail.getMailTo());
-//        if (!StringUtils.isEmpty(mail.getToCc())) {
-//            mailMessage.setCc(mail.getToCc());
-//        }
-//        mailMessage.setSubject(mail.getSubject());
-//        mailMessage.setText(mail.getMessage());
-        return null;//mailMessage;
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(mail.getMailTo());
+        mailMessage.setCc((mail.getToCc()));
+        mailMessage.setSubject(mail.getSubject());
+        mailMessage.setText(mail.getMessage());
+        return mailMessage;
     }
 }
