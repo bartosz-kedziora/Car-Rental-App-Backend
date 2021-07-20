@@ -13,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
@@ -166,7 +165,7 @@ public class UserFacadeTestSuite {
 
 
     @Test
-    public void deleteUserTest() throws UserNotFoundException {
+    public void deleteUserTest(){
 
         //When
         userFacade.deleteUser(2L);

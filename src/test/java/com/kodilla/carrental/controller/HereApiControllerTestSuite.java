@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import java.util.Collections;
 import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -49,13 +48,13 @@ public class HereApiControllerTestSuite {
     public void shouldFetchCarAgencies() throws Exception {
         //Given
         CarAgencyAddressDto carAgencyAddressDto = new CarAgencyAddressDto(
-                "Mickiewicza",
-                "19",
-                "61-123",
-                "Poznan",
-                "Wielkopolska",
+                "Ceglana",
+                "4",
+                "40-514",
+                "Katowice",
+                "Slaskie",
                 "Polska");
-        CarAgencyResultDto carAgencyResultDto = new CarAgencyResultDto("Wypozyczalnia19", carAgencyAddressDto);
+        CarAgencyResultDto carAgencyResultDto = new CarAgencyResultDto("99Rent", carAgencyAddressDto);
         List<CarAgencyResultDto> carAgencyResultDtoList = Collections.singletonList(carAgencyResultDto);
         CarAgencyDto carAgencyDto = new CarAgencyDto(carAgencyResultDtoList);
 

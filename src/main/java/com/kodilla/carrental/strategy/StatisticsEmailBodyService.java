@@ -4,23 +4,16 @@ import com.kodilla.carrental.domain.Status;
 import com.kodilla.carrental.repository.CarRepository;
 import com.kodilla.carrental.repository.RentalRepository;
 import com.kodilla.carrental.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class StatisticsEmailBodyService implements EmailBodyService {
 
     private final CarRepository carRepository;
     private final UserRepository userRepository;
     private final RentalRepository rentalRepository;
-
-    @Autowired
-    public StatisticsEmailBodyService(CarRepository carRepository, UserRepository userRepository,
-                                      RentalRepository rentalRepository) {
-        this.carRepository = carRepository;
-        this.userRepository = userRepository;
-        this.rentalRepository = rentalRepository;
-    }
 
     @Override
     public String emailBodyCreate() {

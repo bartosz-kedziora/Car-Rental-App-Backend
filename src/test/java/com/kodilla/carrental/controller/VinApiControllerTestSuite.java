@@ -11,16 +11,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-
 import java.util.Collections;
 import java.util.List;
-
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(VinController.class)
+@WebMvcTest(VinApiController.class)
 public class VinApiControllerTestSuite {
 
     @Autowired
@@ -43,7 +41,6 @@ public class VinApiControllerTestSuite {
         VinApiDto vinApiDto = new VinApiDto (vinResultDtoList);
 
         when(vinApiService.decodeVin("JTHFF2C26B2515141")).thenReturn(vinApiDto);
-
 
         //When & Then
         mockMvc.perform(get("/v1/vin/JTHFF2C26B2515141")

@@ -7,10 +7,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.Collections;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -64,6 +62,5 @@ public class HereApiServiceTestSuite {
         //Then
         assertEquals("Katowice", result.getAgenciesDtoList().get(0).getAddress().getCity());
         assertEquals("Ceglana", result.getAgenciesDtoList().get(0).getAddress().getStreet());
-
     }
 }

@@ -1,7 +1,6 @@
 package com.kodilla.carrental.facade;
 
 import com.kodilla.carrental.domain.Rental;
-import com.kodilla.carrental.dto.CarDto;
 import com.kodilla.carrental.dto.RentalDto;
 import com.kodilla.carrental.exception.*;
 import com.kodilla.carrental.mapper.RentalMapper;

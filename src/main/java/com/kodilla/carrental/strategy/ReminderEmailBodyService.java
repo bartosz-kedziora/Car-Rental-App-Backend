@@ -1,18 +1,14 @@
 package com.kodilla.carrental.strategy;
 
 import com.kodilla.carrental.repository.RentalRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ReminderEmailBodyService implements EmailBodyService {
 
     private final RentalRepository rentalRepository;
-
-    @Autowired
-    public ReminderEmailBodyService(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
-    }
 
     @Override
     public String emailBodyCreate() {

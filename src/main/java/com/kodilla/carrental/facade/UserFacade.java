@@ -7,7 +7,6 @@ import com.kodilla.carrental.mapper.UserMapper;
 import com.kodilla.carrental.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,6 +16,7 @@ public class UserFacade {
 
     private final UserService userService;
     private final UserMapper userMapper;
+
     public UserDto saveUser(UserDto userDto){
             User user = userMapper.mapToUser(userDto);
             user.setAccountCreated(LocalDate.now());
@@ -46,7 +46,7 @@ public class UserFacade {
         return userMapper.mapToUserDtoList(userService.getAllUsers());
     }
 
-    public void deleteUser(Long id) throws UserNotFoundException {
+    public void deleteUser(Long id){
         userService.deleteUser(id);
     }
 }

@@ -16,14 +16,14 @@ public class UserController {
 
     private final UserFacade userFacade;
 
-    @GetMapping("by_id/{userId}")
-    public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
-        return userFacade.getUserById(userId);
-    }
-
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userFacade.getAllUsers();
+    }
+
+    @GetMapping("by_id/{userId}")
+    public UserDto getUserById(@PathVariable Long userId) throws UserNotFoundException {
+        return userFacade.getUserById(userId);
     }
 
     @GetMapping("/by_email/{email}")
@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PutMapping
-    public UserDto updateUser(@RequestBody UserDto userDto) throws UserNotFoundException{
+    public UserDto updateUser(@RequestBody UserDto userDto){
         return userFacade.updateUser(userDto);
     }
 

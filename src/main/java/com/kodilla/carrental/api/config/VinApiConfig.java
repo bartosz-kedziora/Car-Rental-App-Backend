@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 public class VinApiConfig {
-
     @Value("${vin.api.endpoint}")
     private String vinEndpoint;
 }

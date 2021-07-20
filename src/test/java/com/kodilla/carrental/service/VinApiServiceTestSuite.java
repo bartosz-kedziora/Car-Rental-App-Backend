@@ -1,6 +1,5 @@
 package com.kodilla.carrental.service;
 
-
 import com.kodilla.carrental.api.client.VinApiClient;
 import com.kodilla.carrental.dto.VinApiDto;
 import com.kodilla.carrental.dto.VinBodyDto;
@@ -11,10 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import java.util.Collections;
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 

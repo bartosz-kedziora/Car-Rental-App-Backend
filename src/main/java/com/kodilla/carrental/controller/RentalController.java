@@ -17,6 +17,11 @@ public class RentalController {
 
     private final RentalFacade rentalFacade;
 
+    @GetMapping
+    public List<RentalDto> getAllRentals() {
+        return rentalFacade.getAllRentals();
+    }
+
     @GetMapping("by_id/{rentalId}")
     public RentalDto getRentalById(@PathVariable Long rentalId) throws RentalNotFoundException {
         return rentalFacade.getRentalById(rentalId);
@@ -30,11 +35,6 @@ public class RentalController {
     @GetMapping("/by_car_id/{carId}")
     public List<RentalDto> getRentalsByCarId(@PathVariable Long carId) {
         return rentalFacade.getRentalsByCarId(carId);
-    }
-
-    @GetMapping
-    public List<RentalDto> getAllRentals() {
-        return rentalFacade.getAllRentals();
     }
 
     @PostMapping

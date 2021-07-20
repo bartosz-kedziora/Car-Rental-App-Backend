@@ -3,7 +3,6 @@ package com.kodilla.carrental.mapper;
 import com.kodilla.carrental.domain.User;
 import com.kodilla.carrental.dto.UserDto;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

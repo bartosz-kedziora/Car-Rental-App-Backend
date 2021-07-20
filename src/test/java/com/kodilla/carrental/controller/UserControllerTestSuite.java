@@ -115,6 +115,4 @@ public class UserControllerTestSuite {
                 .param("id", "1"))
                 .andExpect(status().is(200));
     }
-
-
 }

@@ -5,7 +5,6 @@ import com.kodilla.carrental.exception.UserNotFoundException;
 import com.kodilla.carrental.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -37,5 +36,4 @@ public class UserService {
     public void deleteUser(final Long id) {
         userRepository.deleteById(id);
     }
-
 }

@@ -1,27 +1,20 @@
 package com.kodilla.carrental.api.client;
 
-
 import com.kodilla.carrental.api.config.HereApiConfig;
 import com.kodilla.carrental.dto.CarAgencyDto;
 import com.kodilla.carrental.dto.GeocodeDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 
+@RequiredArgsConstructor
 @Component
 public class HereApiClient {
 
     private final RestTemplate restTemplate;
     private final HereApiConfig hereApiConfig;
-
-    @Autowired
-    public HereApiClient(RestTemplate restTemplate, HereApiConfig hereApiConfig) {
-        this.restTemplate = restTemplate;
-        this.hereApiConfig = hereApiConfig;
-    }
 
     public GeocodeDto locateGeocode(String postalCode) {
         URI url = getLocalizerUri(postalCode);

@@ -1,13 +1,13 @@
 package com.kodilla.carrental.dto;
 
 import lombok.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class RentalDto {
     private Long id;
     private LocalDate rentedFrom;

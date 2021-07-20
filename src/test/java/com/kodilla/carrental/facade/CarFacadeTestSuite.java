@@ -263,6 +263,4 @@ public class CarFacadeTestSuite {
         //Then
         verify(carService, times(1)).deleteCar(2L);
     }
-
-
 }
