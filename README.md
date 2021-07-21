@@ -1,11 +1,11 @@
 # Car-Rental-App-Backend
 Car Rental - Web application (backend)
 
-Kurs Kodilla - projekt końcowy. Aplikacja WEB usługi wynajmu samochodów.
+Kodilla course - final project. WEB application of car rental service.
 
-Frontend: 
+Frontend: https://github.com/bartosz-kedziora/Car-Rental-App-Frontend
 
-Wykorzystane technologie:
+Technologies:
 
 - Java
 - Spring Boot
@@ -17,15 +17,16 @@ Wykorzystane technologie:
 - Vaadin (frontend)
 - Lombok
 
-Cechy aplikacji:
+Features:
 
-- 20 endpointów REST
-- 2 zewnętrzne źródła danych (HereApi, VinDecoder)
-- Email Scheduler
-- zapis do bazy danych (MySql)
-- Testy pokrywające co najmniej 65% kodu
-- Wzorce projektowe (Strategy, Facade)
-- Warstwa widoku 
+- 20 REST endpoints
+- Two external API's:(HereApi, VinDecoder)
+- Email sender scheduler
+- Test coverage > 65%
+- Design patterns (Strategy, Facade)
+- Frontend (http://localhost:8081/mainView)
+
+
 
 
 
